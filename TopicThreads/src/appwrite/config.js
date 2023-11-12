@@ -29,7 +29,7 @@ class Service
         }
     }
 
-    async updatePost(slug,{title,content,featuredImage,status,userId})
+    async updatePost(slug,{title,content,featuredImage,status})
     {
         try {
             const response=await this.databases.updateDocument(details.APPWRITE_DATABASE_ID,details.APPWRITE_COLLECTION_ID,slug,{
@@ -57,7 +57,7 @@ class Service
         }
     }
 
-    async getDocument(slug)
+    async getPost(slug)
     {
         try {
             const response=await this.databases.getDocument(details.APPWRITE_DATABASE_ID,details.APPWRITE_COLLECTION_ID,slug)
