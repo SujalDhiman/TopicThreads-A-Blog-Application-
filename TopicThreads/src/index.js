@@ -5,6 +5,7 @@ import Logo from "./components/Logo";
 import LogoutBtn from "./components/Header/LogoutBtn";
 import Button from "./components/Button"
 import Input from "./components/Input"
+import Select from "./components/Select"
 export {
     Header,
     Footer,
@@ -12,5 +13,6 @@ export {
     Logo,
     LogoutBtn,
     Button,
-    Input
+    Input,
+    Select
 }
