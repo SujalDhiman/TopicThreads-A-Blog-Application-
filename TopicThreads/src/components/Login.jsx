@@ -16,8 +16,10 @@ function Login() {
         setError("")
         try {
             const session = await authService.login(data)
+            console.log("session after login",session)
             if (session) {
                 const userData = await authService.getCurrentUser()
+                console.log("userData after getCurrentUser",userData)
                 if(userData) dispatch(authLogin(userData));
                 navigate("/")
             }
