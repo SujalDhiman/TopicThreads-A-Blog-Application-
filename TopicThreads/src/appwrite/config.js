@@ -28,7 +28,7 @@ export class Service{
                     userid:userId,
                 }
             )
-            console.log("create post response",response)
+           
             return response
         } catch (error) {
             console.log("Appwrite serive :: createPost :: error", error);
@@ -37,7 +37,7 @@ export class Service{
 
     async updatePost(slug, {title, content, featuredImage, status}){
         try {
-            console.log("slug in updatePost",slug)
+           
             const response= await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
@@ -45,12 +45,12 @@ export class Service{
                 {
                     title,
                     content,
-                    featuredImage,
+                    featuredimage:featuredImage,
                     status,
 
                 }
             )
-            console.log("update document response",response)
+           
             return response
         } catch (error) {
             console.log("Appwrite serive :: updatePost :: error", error);
@@ -59,14 +59,14 @@ export class Service{
 
     async deletePost(slug){
         try {
-            console.log("slug in deletePost",slug)
+           
             const response=await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
             
             )
-            console.log("deletePost response",response)
+           
             return true
         } catch (error) {
             console.log("Appwrite serive :: deletePost :: error", error);
@@ -76,14 +76,14 @@ export class Service{
 
     async getPost(slug){
         try {
-            console.log("slug in getPost",slug)
+           
             const response= await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
             
             )
-            console.log("get post response",response)
+           
             return response
         } catch (error) {
             console.log("Appwrite serive :: getPost :: error", error);
@@ -98,7 +98,7 @@ export class Service{
                 conf.appwriteCollectionId,
                 queries,
             )
-            console.log("get posts response",response)
+           
             return response
         } catch (error) {
             console.log("Appwrite serive :: getPosts :: error", error);
@@ -126,12 +126,12 @@ export class Service{
 
     async deleteFile(fileId){
         try {
-            console.log("fileId in deleteFile",fileId)
+           
             const response= this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
             )
-            console.log("deleteFile response",response)
+           
             return true
         } catch (error) {
             console.log("Appwrite serive :: deleteFile :: error", error);
@@ -139,13 +139,13 @@ export class Service{
         }
     }
 
-    async getFilePreview(fileId){
+    getFilePreview(fileId){
         console.log("fileId in getFilePreview",fileId)
         const response= this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
         )
-        console.log("getFilePreview response",response.href)
+        console.log("getFilePreview response",response)
         return response.href
         
     }

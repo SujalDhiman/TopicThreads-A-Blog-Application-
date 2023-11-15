@@ -20,10 +20,11 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         if (post) {
+
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
             if (file) {
-                appwriteService.deleteFile(post.featuredImage);
+                appwriteService.deleteFile(post.featuredimage);
             }
 
             const dbPost = await appwriteService.updatePost(post.$id, {
@@ -40,8 +41,7 @@ export default function PostForm({ post }) {
             if (file) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
-                console.log("userData from state in postform",userData)
-                const dbPost = await appwriteService.createPost({ ...data,featuredImage:fileId, userId: userData.$id });
+                const dbPost = await appwriteService.createPost({ ...data,featuredImage:fileId, userId: userData["$id"]});
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
@@ -102,7 +102,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFilePreview(post.featuredimage)}
                             alt={post.title}
                             className="rounded-lg"
                         />

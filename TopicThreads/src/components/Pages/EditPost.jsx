@@ -19,7 +19,7 @@ function EditPost() {
             navigate('/')
         }
     }, [slug, navigate])
-  return post ? (
+  return post!== null ? (
     <div className='py-8'>
         <Container>
             <PostForm post={post} />
