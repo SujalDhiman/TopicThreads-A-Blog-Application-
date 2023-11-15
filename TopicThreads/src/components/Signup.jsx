@@ -82,7 +82,7 @@ function Signup() {
             </div>
 
     </div>
-)
+  )
 }
 
 export default Signup
