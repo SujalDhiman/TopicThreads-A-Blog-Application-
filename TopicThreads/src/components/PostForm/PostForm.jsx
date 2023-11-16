@@ -20,13 +20,16 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         if (post) {
-
+            
+            console.log("Post mila hai uske if ke andar")
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
             if (file) {
                 appwriteService.deleteFile(post.featuredimage);
             }
-
+            console.log("file uploaded inside postform",file)
+            console.log("file id inside postform",file.$id)
+            console.log("data inside postform",data)
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
@@ -40,9 +43,9 @@ export default function PostForm({ post }) {
 
             if (file) {
                 const fileId = file.$id;
+                console.log(fileId)
                 data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data,featuredImage:fileId, userId: userData["$id"]});
-
+                const dbPost = await appwriteService.createPost({ ...data,userId: userData.$id});
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
                 }
